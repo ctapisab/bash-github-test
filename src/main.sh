@@ -14,9 +14,9 @@ main() {
 
   local -r commit_sha="$(github_actions::commit_sha)"
 
-  local -r commited_files=$(github::get_commit_modified_files "commit_sha")
+  local -r commited_files=$(github::get_commit_modified_files "$commit_sha")
 
-  echo $commited_files
+  echo $commited_files | xargs github::get_file_details
 
   exit $?
 }
